@@ -32,9 +32,9 @@ const Setting = () => {
                     <a
                       href="#"
                       className="fn__closer fn__icon_button">
-                      {/* <img src="svg/close.svg" alt="" className="fn__svg"> */}
+                      {/* <img src="svg/close.svg" alt="" className="fn__svg" /> */}
                     </a>
-                    {/* <img src="user-settings.html#" alt="" className="preview_img"> */}
+                    {/* <img src="user-settings.html#" alt="" className="preview_img" /> */}
                   </span>
 
                   <input type="file" accept="image/*" />
@@ -99,7 +99,7 @@ const Setting = () => {
                   <label className="fn__checkbox">
                     <input type="checkbox" />I approve all changes
                     <span className="checkmark"></span>
-                    {/* <img src="svg/check.svg" alt="" className="fn__svg"> */}
+                    {/* <img src="svg/check.svg" alt="" className="fn__svg" /> */}
                   </label>
                 </div>
                 <div className="item">
