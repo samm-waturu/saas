@@ -54,7 +54,7 @@ const SignUp = () => {
                 }}>
                 <label className="fn__submit">
                   <input
-                    // type="submit"
+                    type="submit"
                     name="submit"
                   />
                 </label>
