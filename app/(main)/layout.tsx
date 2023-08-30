@@ -93,7 +93,7 @@ export default function RootLayout({
           <ul></ul>
         </div>
         {pathname == p[3] ||
-          (pathname == p[10] && (
+          (pathname == p[11] && (
             <div className="style_fn_font">
               <a
                 className="font__closer_link fn__icon_button"
