@@ -249,14 +249,10 @@ export default function RootLayout({
                 <div className="leftpanel_logo">
                   <a href="" className="fn_logo">
                     <span className="full_logo">
-                      {/* 
-                    <img src="" alt="" className="desktop_logo" />
-                    <img src="" alt="" className="retina_logo" />
-                    */}
+                
                     </span>
                     <span className="short_logo">
-                      {/*    <img src="" alt="" className="desktop_logo" />
-                    <img src="" alt="" className="retina_logo" /> */}
+                    
                     </span>
                   </a>
                   <a
@@ -307,33 +303,6 @@ export default function RootLayout({
                           <span className="text">Profile</span>
                         </Link>
                       </li>
-                      {/* <li>
-                      <a
-                        href=""
-                        className="fn__tooltip menu__item"
-                        data-position="right"
-                        title="Personal Feed">
-                        <span className="icon">
-                          <img src="" alt="" className="fn__svg" />
-                        </span>
-                        <span className="text">
-                          Personal Feed
-                          <span className="count">48</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="models.html"
-                        className="fn__tooltip menu__item"
-                        data-position="right"
-                        title="Finetuned Models">
-                        <span className="icon">
-                          <img src="" alt="" className="fn__svg" />
-                        </span>
-                        <span className="text">Finetuned Models</span>
-                      </a>
-                    </li> */}
                     </ul>
                   </div>
 
