@@ -1,6 +1,6 @@
 "use client";
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
-import Link from "next/image";
+import Link from "next/link";
 import {
   ImageOutlined,
   ArrowRightOutlined,

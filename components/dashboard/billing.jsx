@@ -64,7 +64,7 @@ const Billing = () => {
                     <div className="action">
                       <div className="edit_wrapper">
                         <a
-                          href="user-billing.html#"
+                          href="#"
                           className="options">
                           <span className="dots"></span>
                         </a>
@@ -72,14 +72,14 @@ const Billing = () => {
                           <ul>
                             <li>
                               <a
-                                href="user-billing.html#"
+                                href="#"
                                 className="edit">
                                 Edit
                               </a>
                             </li>
                             <li>
                               <a
-                                href="user-billing.html#"
+                                href="#"
                                 className="delete">
                                 Delete
                               </a>
@@ -101,7 +101,7 @@ const Billing = () => {
                     <div className="action">
                       <div className="edit_wrapper">
                         <a
-                          href="user-billing.html#"
+                          href="#"
                           className="options">
                           <span className="dots"></span>
                         </a>
@@ -109,14 +109,14 @@ const Billing = () => {
                           <ul>
                             <li>
                               <a
-                                href="user-billing.html#"
+                                href="#"
                                 className="edit">
                                 Edit
                               </a>
                             </li>
                             <li>
                               <a
-                                href="user-billing.html#"
+                                href="#"
                                 className="delete">
                                 Delete
                               </a>
@@ -133,7 +133,7 @@ const Billing = () => {
                 <li className="payment__list_item new">
                   <div className="item">
                     <a
-                      href="user-billing.html#"
+                      href="#"
                       className="fn__full_link"></a>
                     <span className="add"></span>
                     <span className="text">Add new</span>
