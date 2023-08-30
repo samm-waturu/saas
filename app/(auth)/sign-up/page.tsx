@@ -50,7 +50,7 @@ const SignUp = () => {
               <div className="form__submit" onClick={(e) => {router.replace("/profile")}}>
                 <label className="fn__submit">
                   <input
-                    type="submit"
+                    // type="submit"
                     name="submit"
                   />
                 </label>

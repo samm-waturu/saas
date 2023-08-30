@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
+import Link from "next/image";
 import {
   ImageOutlined,
   ArrowRightOutlined,
@@ -45,7 +46,7 @@ const Index = () => {
               <ul>
                 <li>
                   <div className="item">
-                    <a href="">
+                    <Link href="/image">
                       <span className="icon">
                         <ImageOutlined className="fn__svg" />
                       </span>
@@ -59,12 +60,12 @@ const Index = () => {
                       <span className="arrow">
                         <ArrowRightOutlined className="fn__svg" />
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </li>
                 <li>
                   <div className="item">
-                    <a href="">
+                    <Link href="/chat">
                       <span className="icon">
                         <ChatOutlined className="fn__svg" />
                       </span>
@@ -79,7 +80,7 @@ const Index = () => {
                       <span className="arrow">
                         <ArrowRightOutlined className="fn__svg" />
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </li>
               </ul>
@@ -90,9 +91,7 @@ const Index = () => {
           <div className="company_info">
             {/*<img src="" alt="" />*/}
             <div className={FontFetchSans.className}>
-              <h4 className="">
-                Lorem ipsum
-              </h4>
+              <h4 className="">Lorem ipsum</h4>
               <hr />
               {/*Logged in*/}
               <div className="fn__members">
