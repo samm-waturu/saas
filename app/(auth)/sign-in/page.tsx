@@ -35,7 +35,7 @@ const SignIn = () => {
               </div>
               <div
                 className="form__submit"
-                onClick={e => router.replace("/")}>
+                onClick={(e) => {router.replace("/")}}>
                 <label className="fn__submit">
                   <input
                     type="submit"
