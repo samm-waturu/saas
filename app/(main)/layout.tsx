@@ -22,17 +22,11 @@ import {
   VideocamOutlined
 } from "@mui/icons-material";
 import "@/app/global.css";
-import type { Metadata } from "next";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Head from "@/components/dashboard/head";
 import { usePathname } from "next/navigation";
 import { FontFetchHeebo, FontFetchSans } from "../fonts/fonts";
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Dashboard section"
-};
 export default function RootLayout({
   children
 }: {
