@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 const SignUp = () => {
@@ -47,7 +47,11 @@ const SignUp = () => {
                   spellCheck="false"
                 />
               </div>
-              <div className="form__submit" onClick={(e) => {router.replace("/profile")}}>
+              <div
+                className="form__submit"
+                onClick={e => {
+                  router.replace("/profile");
+                }}>
                 <label className="fn__submit">
                   <input
                     // type="submit"
