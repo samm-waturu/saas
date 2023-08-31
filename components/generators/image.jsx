@@ -22,12 +22,9 @@ const Img = ({ prop }) => {
             <h1 className="title">Image Generation</h1>
             <div className="setup">
               <p className="info">Tune</p>
-                <a
-                  href="#"
-                  className="sidebar__trigger ">
-                  <TuneOutlined className="fn__svg" />
-                </a>
-        
+              <a href="#" className="sidebar__trigger ">
+                <TuneOutlined className="fn__svg" />
+              </a>
             </div>
           </div>
           {/* Where user types prompts */}

@@ -65,7 +65,7 @@ export default function DashboardLayout({
         : null;
       setState(true);
       console.log(
-        `Script mounted + you are on ${pathname} page section`
+        `Script mounted + you are on ${pathname} page section ${p[3]}`
       );
     };
     e();
@@ -79,7 +79,7 @@ export default function DashboardLayout({
         <ul></ul>
       </div>
       {pathname == p[3] ||
-        (pathname == p[10] && (
+        pathname == p[10] ? (
           <div className="style_fn_font">
             <a className="font__closer_link fn__icon_button" href="#">
               <CloseOutlined className="fn__svg" />
@@ -102,12 +102,12 @@ export default function DashboardLayout({
                 <option value="26">26 px</option>
                 <option value="28">28 px</option>
               </select>
-              <a href="l#" className="apply style_fn_button">
+              <a href="#" className="apply style_fn_button">
                 <span>Apply</span>
               </a>
             </div>
           </div>
-        ))}
+        ): `no jsx element`}
       <div
         className={`style_fn_wrapper  ${
           pathname == p[0] ||

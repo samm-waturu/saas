@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(website)/index.jsx", "app/(website)/(user)/settings/settings.jsx", "app/(website)/(user)/profile/profile.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(website)/index.jsx", "app/(website)/(user)/settings/settings.jsx", "app/(website)/(user)/profile/profile.jsx", "app/api/chat/route.ts", "components/generators/image.jsx"],
   "exclude": ["node_modules"]
 }
