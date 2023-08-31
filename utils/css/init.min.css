@@ -378,6 +378,27 @@ custom_typing span {
   position: relative;
   border-radius: 20px;
 }
+.cl-socialButtons {
+  display: block;
+  background-color: var(--style-button-bg-color);
+  position: relative;
+  border-radius: 20px;
+}
+.cl-internal-1bm3sy9{
+  color: var(--style-heading-color);
+  max-width: 100%;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 34px;
+  /* text-transform: uppercase; */
+  text-align: center;
+  outline: transparent 0;
+  overflow: hidden;
+}
 .fn__submit input,
 .style_fn_button {
   width: fit-content;
@@ -2653,7 +2674,7 @@ a.fn__like.no_border .fn__svg {
   font-weight: 600;
 }
 .fn__lined_text .text,
-.style_fn_sign .form__title,
+.style_fn_sign .cl-headerTitle,
 .style_fn_sign .pass_lab a,
 .style_fn_sign .sign__desc p.fn__preloader .icon {
   height: 28px;
@@ -2678,6 +2699,7 @@ a.fn__like.no_border .fn__svg {
     transform: rotate(360deg);
   }
 }
+/* customizing clerks sign in window */
 .style_fn_sign{
   position: fixed;
   top: 0;
@@ -2695,6 +2717,13 @@ a.fn__like.no_border .fn__svg {
   justify-content: center;
   overflow-y: auto;
   padding: 50px 40px;
+}
+.cl-internal-17ydaof{
+  background-color: var(--style-some-r-bg-color);
+   width: 100%;
+    border-radius: 5px;
+    padding: 36px 50px 40px;
+    position: relative;
 }
 .style_fn_sign .logo {
   background-size: 141px;
@@ -2737,16 +2766,18 @@ a.fn__like.no_border .fn__svg {
 .style_fn_sign .sign__desc p a:hover {
   text-decoration: underline;
 }
-.style_fn_sign .sign__content {
+.style_fn_sign .cl-card {
   width: 500px;
   max-width: 100%;
+  border: 1px solid var(--style-border-color);
+  
 }
-.style_fn_sign .form__content {
+.style_fn_sign .cl-main {
   width: 100%;
   border-radius: 5px;
   padding: 36px 50px 40px;
   position: relative;
-  border: 1px solid var(--style-border-color);
+  
 }
 .style_fn_sign .pass_lab {
   display: flex;
@@ -2760,10 +2791,43 @@ a.fn__like.no_border .fn__svg {
   color: var(--style-main-color);
   line-height: 40px;
 }
-.style_fn_sign .form__title {
+.style_fn_sign .cl-headerTitle {
   text-align: center;
   font-size: 24px;
   margin: 0 0 3px;
+  font-weight: 500;
+  color: var(--style-heading-color);
+  line-height: 1;
+}
+.style_fn_sign .cl-headerSubtitle{
+   font-weight: 500;
+  color: var(--style-heading-color);
+  line-height: 1;
+  font-size: 10px;
+  visibility: hidden;
+  text-transform: uppercase;
+}
+.style_fn_sign .cl-footerActionText{
+   font-weight: 500;
+  color: var(--style-heading-color);
+  line-height: 1;
+}
+.style_fn_sign .cl-formButtonPrimary{
+  border-radius: 20px !important;
+  background-color: var(--style-main-color1);
+  text-decoration: none
+}
+.cl-internal-b3fm6y{
+  visibility: hidden;
+}
+.style_fn_footer .cl_footer{
+  margin: 25px 0 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+.style_fn_sign .cl-footerActionLink{
   font-weight: 500;
   color: var(--style-heading-color);
   line-height: 1;
@@ -2796,6 +2860,20 @@ a.fn__like.no_border .fn__svg {
   -ms-align-items: center;
   align-items: center;
   width: 100%;
+}
+.cl-dividerRow{
+   display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.cl-dividerText{
+  font-size: 14px;
+  color: var(--style-heading-color);
+  text-transform: uppercase;
+}
+.cl-dividerLine{
+   background-color: var(--style-border-color) 
 }
 .fn__backto,
 .style_fn_notifications_list .notification__item {
@@ -5914,7 +5992,7 @@ a.fn__like.no_border .fn__svg {
   .style_fn_pricing .pricing__header .item_col,
   .style_fn_pricing .pricing__heading .item,
   .style_fn_sign,
-  .style_fn_sign .form__content {
+  .style_fn_sign .cl-main {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -6098,9 +6176,13 @@ a.fn__like.no_border .fn__svg {
   .style_fn_changelog .item__header,
   .style_fn_image_generation_page .generation_header,
   .style_fn_sign,
-  .style_fn_sign .form__content {
+  .style_fn_sign .cl-main {
     padding-left: 10px;
     padding-right: 10px;
+  }
+ 
+  .style_fn_sign .cl-card{
+    width: 322px;
   }
   .fn__details_list li,
   .fn__gallery_item,
