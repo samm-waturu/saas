@@ -1,4 +1,4 @@
-import "@/utils/css/loader.css"; 
+
 
 export default function AuthLayout({
   children

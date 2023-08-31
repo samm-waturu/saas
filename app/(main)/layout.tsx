@@ -1,5 +1,4 @@
 "use client";
-import "@/app/global.css";
 import {
   ArrowRightOutlined,
   ArrowLeftOutlined,

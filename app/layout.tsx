@@ -1,4 +1,5 @@
 // Main parent
+import "@/app/global.css"; 
 import { FontFetchHeebo, FontFetchSans } from "./fonts/fonts";
 import { ClerkProvider } from '@clerk/nextjs'
 export default function RootLayout({children} : {
