@@ -102,11 +102,7 @@ const Code = () => {
                 </div>
               </div>
             </div>
-            {/* 
-								<div className="chat__item" id="chat2"></div>
-								<div className="chat__item" id="chat3"></div>
-								<div className="chat__item" id="chat4"></div>
-                */}
+
           </div>
         </div>
 
