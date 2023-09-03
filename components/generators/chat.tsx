@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   SendOutlined,
   CheckOutlined,
@@ -106,38 +106,9 @@ function Chat() {
               </div>
               <form
                 onSubmit={handleSubmit((data, e) => {
-                  const strLength = new String(data.textarea);
-                  if (strLength.length > 0 && strLength.length < 20) {
-                    setValue(
-                      `Type a lengither prompt and ensure it's valid`
-                    );
-                    setStyle(`fade-in-bottom`);
-
-                    const timer = setTimeout(() => {
-                      setValue("");
-                      setStyle("");
-                    }, 4000);
-                    console.log("Check on your prompt length");
-                  } else if (
-                    strLength.length > 20 &&
-                    strLength.length < 40
-                  ) {
-                    setValue(
-                      `Ensure you are more descriptive on your next prompt`
-                    );
-                    setStyle(`fade-in-bottom`);
-                    const timer = setTimeout(() => {
-                      setValue("");
-                      setStyle("");
-                    }, 4000);
-                    setString("");
-                    console.log(data, strLength.length),
-                      e.preventDefault();
-                  } else if (strLength.length > 40) {
-                    console.log(data, strLength.length),
-                      e.preventDefault();
-                    setString("");
-                  }
+                  const submit = async() => {
+                  
+                  };
                 })}>
                 <textarea
                   rows="1"
@@ -157,7 +128,7 @@ function Chat() {
                 </button>
               </form>
             </div>
-           <div
+            <div
               className={""}
               style={{ marginTop: 2, marginBottom: -4 }}>
               {errors.textarea && (
@@ -181,7 +152,9 @@ function Chat() {
                     fontWeight: "bold",
                     color: "rebeccapurple"
                   }}>
-                  <span className={`${style} fade-in-bottom`}>{value} </span>
+                  <span className={`${style} fade-in-bottom`}>
+                    {value}{" "}
+                  </span>
                 </p>
               )}
             </div>
