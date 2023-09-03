@@ -1,3 +1,4 @@
+"use client";
 import {
   InfoOutlined,
   DownloadOutlined,
@@ -5,10 +6,20 @@ import {
 } from "@mui/icons-material";
 import Image from "next/image";
 import { FontFetchHeebo } from "@/app/fonts/fonts";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import placeHolder from "@/public/img/placeholder/placeholder.png";
 import audioplaceHolder from "@/public/img/placeholder/audioplaceholder.jpg";
 
 const Audio = ({ prop }) => {
+  const [value, setValue] = useState("");
+  const [string, setString] = useState("");
+  const [style, setStyle] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
   return (
     <div className={FontFetchHeebo.className}>
       <div className="generation_page">
@@ -18,55 +29,99 @@ const Audio = ({ prop }) => {
           <div className="header_top">
             <h1 className="title">Audio Generation</h1>
             <div className="setup">
-              <p className="info">
-                Tune
-              </p>
-                <a
-                  href="#"
-                  className="sidebar__trigger ">
-                  <TuneOutlined className="fn__svg" />
-                </a>
+              <p className="info">Tune</p>
+              <a href="#" className="sidebar__trigger ">
+                <TuneOutlined className="fn__svg" />
+              </a>
             </div>
           </div>
           {/* Where user types prompts */}
           <div className="header_bottom">
-            <div className="include_area">
-              <textarea id="fn__include_textarea" rows="1"></textarea>
-              <textarea
-                className="fn__hidden_textarea"
-                rows="1"
-                placeholder="describe your video"
-                tabindex="-1"></textarea>
-            </div>
-            {/* Negative prompts 
-            <div className="exclude_area">
-              <textarea id="fn__exclude_textarea" rows="1"></textarea>
-              <textarea
-                className="fn__hidden_textarea"
-                rows="1"
-                tabindex="-1"></textarea>
-            </div>
-            */}
-            <div className="generate_section">
-              {/* Negative prompt section & generation button */}
-              {/* 
-                    <label className="fn__toggle">
-                      <span className="t_in">
-                        <input type="checkbox" checked id="negative_prompt" />
-                        <span className="t_slider"></span>
-                        <span className="t_content"></span>
-                      </span>
-                      Negative Prompt
-                    </label>
-                  */}
-              <a
-                id="generate_it"
-                href="#"
-                className="style_fn_button">
-                <span>Generate</span>
-              </a>
-            </div>
+            <form
+               onSubmit={handleSubmit((data, e) => {
+                  const strLength = new String(data.textarea);
+                  if (strLength.length > 0 && strLength.length < 20) {
+                    setValue(
+                      `Type a lengither prompt and ensure it's valid`
+                    );
+                    setStyle(`fade-in-bottom`);
+
+                    const timer = setTimeout(() => {
+                      setValue("");
+                      setStyle("");
+                    }, 4000);
+                    console.log("Check on your prompt length");
+                  } else if (
+                    strLength.length > 20 &&
+                    strLength.length < 40
+                  ) {
+                    setValue(
+                      `Ensure you are more descriptive on your next prompt`
+                    );
+                    setStyle(`fade-in-bottom`);
+                    const timer = setTimeout(() => {
+                      setValue("");
+                      setStyle("");
+                    }, 4000);
+                    setString("");
+                    console.log(data, strLength.length),
+                      e.preventDefault();
+                  } else if (strLength.length > 40) {
+                    console.log(data, strLength.length),
+                      e.preventDefault();
+                    setString("");
+                  }
+              })}>
+              <div className="include_area">
+                <textarea
+                  id="fn__include_textarea"
+                  rows="1"
+                  {...register("textarea", { required: true })}
+                  value={string}
+                  placeholder="describe your audio"
+                  onChange={e => {
+                    setString(e.target.value);
+                  }}></textarea>
+                <textarea
+                  className="fn__hidden_textarea"
+                  rows="1"
+                  tabindex="-1"></textarea>
+              </div>
+              <div className="generate_section">
+                <button style={{ padding: 14 }}>
+                  <span>Generate</span>
+                </button>
+              </div>
+            </form>
           </div>
+         <div
+              className={""}
+              style={{ marginTop: 2, marginBottom: -4 }}>
+              {errors.textarea && (
+                <p
+                  style={{
+                    fontWeight: "bold",
+                    paddingTop: 1,
+                    marginBottom: -4,
+                    color: "rebeccapurple"
+                  }}>
+                  <span className={"fade-in-bottom"}>
+                    A decent prompt is required{" "}
+                  </span>
+                </p>
+              )}
+
+              {value && (
+                <p
+                  className={"text-blur-out"}
+                  style={{
+                    fontWeight: "bold",
+                    color: "rebeccapurple"
+                  }}>
+                  <span className={`${style} fade-in-bottom`}>{value} </span>
+                </p>
+              )}
+            </div>
         </div>
 
         {/* After Generation */}
@@ -158,10 +213,10 @@ const Audio = ({ prop }) => {
           </div>
 
           {/* 
-								<div className="generation_more">
-								<a href="pricing.html" className="style_fn_button medium"><span>Previous Generations</span></a>
-								</div>
-							 */}
+                <div className="generation_more">
+                <a href="pricing.html" className="style_fn_button medium"><span>Previous Generations</span></a>
+                </div>
+               */}
         </div>
       </div>
 

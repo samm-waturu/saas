@@ -1,14 +1,14 @@
-"use client";
-import { FontFetchHeebo } from "@/app/fonts/fonts";
+"use client"
 import {
   SendOutlined,
   CheckOutlined,
   CloseOutlined
 } from "@mui/icons-material";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FontFetchHeebo } from "@/app/fonts/fonts";
+import { useState } from "react";
 
-function Code() {
+function Chat() {
   const [value, setValue] = useState("");
   const [string, setString] = useState("");
   const [style, setStyle] = useState("");
@@ -30,20 +30,21 @@ function Code() {
               Ea iste nostrum suscipit veniam cum et natus veritatis
               facere, non commodi nisi cupiditate incidunt modi ipsam
             </span>
-            <h1 className="title">Code Generator</h1>
+            {/* Dynamic header */}
+            <h1 className="title">Chat Bot </h1>
           </div>
         </div>
+
         <div className="container">
           <div className="chat__list">
-            <div id="chat0" className="chat__item"></div>
-
-            <div className="chat__item active" id="chat1">
+            <div className="chat__item"></div>
+            <div className="chat__item active">
               <div className="chat__box your__chat">
                 <div className="author">
                   <span>You</span>
                 </div>
                 <div className="chat">
-                  <p>React Modal</p>
+                  <p>What is a chat bot?</p>
                 </div>
               </div>
               <div className="chat__box bot__chat">
@@ -51,9 +52,19 @@ function Code() {
                   <span>Bot</span>
                 </div>
                 <div className="chat">
-                  <code>
-                    Code here code here code here h1 ..... h2 ....
-                  </code>
+                  <p>
+                    At the most basic level, a chatbot is a computer
+                    program that simulates and processes human
+                    conversation (either written or spoken), allowing
+                    humans to interact with digital devices as if they
+                    were communicating with a real person. Chatbots
+                    can be as simple as rudimentary programs that
+                    answer a simple query with a single-line response,
+                    or as sophisticated as digital assistants that
+                    learn and evolve to deliver increasing levels of
+                    personalization as they gather and process
+                    information.
+                  </p>
                 </div>
               </div>
               <div className="chat__box your__chat">
@@ -61,7 +72,7 @@ function Code() {
                   <span>You</span>
                 </div>
                 <div className="chat">
-                  <p>React Redux</p>
+                  <p>How do chatbots work?</p>
                 </div>
               </div>
               <div className="chat__box bot__chat">
@@ -69,45 +80,15 @@ function Code() {
                   <span>Bot</span>
                 </div>
                 <div className="chat">
-                  <code>
-                    Code here code here code here h1 ..... h2 ....
-                  </code>
-                </div>
-              </div>
-              <div className="chat__box your__chat">
-                <div className="author">
-                  <span>You</span>
-                </div>
-                <div className="chat">
-                  <p>UseEffect</p>
-                </div>
-              </div>
-              <div className="chat__box bot__chat">
-                <div className="author">
-                  <span>Bot</span>
-                </div>
-                <div className="chat">
-                  <code>
-                    Code here code here code here h1 ..... h2 ....
-                  </code>
-                </div>
-              </div>
-              <div className="chat__box your__chat">
-                <div className="author">
-                  <span>You</span>
-                </div>
-                <div className="chat">
-                  <p>useRef</p>
-                </div>
-              </div>
-              <div className="chat__box bot__chat">
-                <div className="author">
-                  <span>Bot</span>
-                </div>
-                <div className="chat">
-                  <code>
-                    Code here code here code here h1 ..... h2 ....
-                  </code>
+                  <p>
+                    Chatbots boost operational efficiency and bring
+                    cost savings to businesses while offering
+                    convenience and added services to internal
+                    employees and external customers. They allow
+                    companies to easily resolve many types of customer
+                    queries and issues while reducing the need for
+                    human interaction.
+                  </p>
                 </div>
               </div>
             </div>
@@ -169,14 +150,14 @@ function Code() {
                   onChange={e => {
                     setString(e.target.value);
                   }}
-                  placeholder="Send a message..."
+                  placeholder="what is the distance from the moon to ..."
                   id="fn__chat_textarea"></textarea>
                 <button>
                   <SendOutlined className="fn__svg" />
                 </button>
               </form>
             </div>
-            <div
+           <div
               className={""}
               style={{ marginTop: 2, marginBottom: -4 }}>
               {errors.textarea && (
@@ -221,8 +202,8 @@ function Code() {
             <ul className="group__list">
               <li className="group__item">
                 <div className="fn__chat_link active" href="#chat1">
-                  <span className="text">React modal</span>
-                  <input type="text" value="React modal" />
+                  <span className="text">Chat Bot Definition</span>
+                  <input type="text" value="Chat Bot Definition" />
                   <span className="options">
                     <button className="trigger">
                       <span></span>
@@ -245,9 +226,9 @@ function Code() {
                 </div>
               </li>
               <li className="group__item">
-                <div className="fn__chat_link" href="#chat2">
-                  <span className="text">Modal with useEffect</span>
-                  <input type="text" value="Modal with useEffect" />
+                <div className="fn__chat_link">
+                  <span className="text">Essay: Marketing</span>
+                  <input type="text" value="Essay: Marketing" />
                   <span className="options">
                     <button className="trigger">
                       <span></span>
@@ -270,9 +251,34 @@ function Code() {
                 </div>
               </li>
               <li className="group__item">
-                <div className="fn__chat_link" href="#chat3">
-                  <span className="text">useRef and useMemo</span>
-                  <input type="text" value="useRef and useMemo" />
+                <div className="fn__chat_link">
+                  <span className="text">Future of Social Media</span>
+                  <input type="text" value="Future of Social Media" />
+                  <span className="options">
+                    <button className="trigger">
+                      <span></span>
+                    </button>
+                    <span className="options__popup">
+                      <span className="options__list">
+                        <button className="edit">Edit</button>
+                        <button className="delete">Delete</button>
+                      </span>
+                    </span>
+                  </span>
+                  <span className="save_options">
+                    <button className="save">
+                      <CheckOutlined className="fn__svg" />
+                    </button>
+                    <button className="cancel">
+                      <CloseOutlined className="fn__svg" />
+                    </button>
+                  </span>
+                </div>
+              </li>
+              <li className="group__item">
+                <div className="fn__chat_link">
+                  <span className="text">Business Ideas</span>
+                  <input type="text" value="Business Ideas" />
                   <span className="options">
                     <button className="trigger">
                       <span></span>
@@ -301,4 +307,5 @@ function Code() {
     </div>
   );
 }
-export default Code;
+
+export default Chat;

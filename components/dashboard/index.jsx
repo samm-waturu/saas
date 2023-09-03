@@ -13,6 +13,7 @@ const Index = () => {
   const h = () => {
     setState("");
   };
+  /*
   useEffect(() => {
     const pushModal = setInterval(() => {
       setState(`hello and welcome`);
@@ -27,6 +28,7 @@ const Index = () => {
       return () => clearTimeout(timeOut);
     }
   }, [state]);
+  */
   return (
     <>
       <div className="section_home">
@@ -97,7 +99,7 @@ const Index = () => {
               <div className="fn__members">
                 <div className="active item">
                   <span className="circle"></span>
-                  <span className="text">Logged in</span>
+                  <span className="text fade-in-bottom">Logged in</span>
                 </div>
                 {/*Logged out
                 <div className="item">
@@ -105,13 +107,14 @@ const Index = () => {
                   <span className="text">Logged out</span>
                 </div>
                 */}
-                {/*Modal*/}
+                {/*Modal
                 {state && (
                   <div className="active item">
                     <span className="circle " onClick={h}></span>
-                    <span className="text">{state}</span>
+                    <span className="text fade-in-bottom">{state}</span>
                   </div>
                 )}
+                */}
               </div>
             </div>
           </div>
