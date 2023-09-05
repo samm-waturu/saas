@@ -14,14 +14,12 @@ export async function POST(request: Request) {
       model: "gpt-3.5-turbo",
       messages: prompts
     });
-    return NextResponse.json(responseApi.choices[0].message);
-    /*
+
     return NextResponse.json({
       message: responseApi.choices[0].message,
       success: true,
       status: 200
     });
-    */
   } catch (err) {
     console.log(err);
     return NextResponse.json({

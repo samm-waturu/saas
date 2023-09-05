@@ -6,7 +6,7 @@ export default function ImageLayout() {
     <div className="style_fn_content">
       <div className="style_fn_page">
         <div className="style_fn_image_generation_page">
-          <Img prop={""} num={1} />
+          <Img prop={""} />
         </div>
       </div>
       <Footer />

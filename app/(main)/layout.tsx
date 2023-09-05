@@ -61,7 +61,7 @@ export default function DashboardLayout({
         ? require("@/utils/js/plugin")
         : null;
       typeof document !== undefined
-        ? require("@/utils/js/init")
+        ? require("@/utils/js/init.min")
         : null;
       setState(true);
       console.log(
@@ -78,36 +78,37 @@ export default function DashboardLayout({
       <div className="style_fn_fixedsub">
         <ul></ul>
       </div>
-      {pathname == p[3] ||
-        pathname == p[10] ? (
-          <div className="style_fn_font">
-            <a className="font__closer_link fn__icon_button" href="#">
-              <CloseOutlined className="fn__svg" />
+      {pathname == p[3] || pathname == p[10] ? (
+        <div className="style_fn_font">
+          <a className="font__closer_link fn__icon_button" href="#">
+            <CloseOutlined className="fn__svg" />
+          </a>
+          <div className="font__closer"></div>
+          <div className="font__dialog">
+            <h3 className="title">Font Options</h3>
+            <label htmlFor="font_size">Font Size</label>
+            <select id="font_size">
+              <option value="10">10 px</option>
+              <option value="12">12 px</option>
+              <option value="14">14 px</option>
+              <option value="16" selected>
+                16 px
+              </option>
+              <option value="18">18 px</option>
+              <option value="20">20 px</option>
+              <option value="22">22 px</option>
+              <option value="24">24 px</option>
+              <option value="26">26 px</option>
+              <option value="28">28 px</option>
+            </select>
+            <a href="#" className="apply style_fn_button">
+              <span>Apply</span>
             </a>
-            <div className="font__closer"></div>
-            <div className="font__dialog">
-              <h3 className="title">Font Options</h3>
-              <label htmlFor="font_size">Font Size</label>
-              <select id="font_size">
-                <option value="10">10 px</option>
-                <option value="12">12 px</option>
-                <option value="14">14 px</option>
-                <option value="16" selected>
-                  16 px
-                </option>
-                <option value="18">18 px</option>
-                <option value="20">20 px</option>
-                <option value="22">22 px</option>
-                <option value="24">24 px</option>
-                <option value="26">26 px</option>
-                <option value="28">28 px</option>
-              </select>
-              <a href="#" className="apply style_fn_button">
-                <span>Apply</span>
-              </a>
-            </div>
           </div>
-        ): `no jsx element`}
+        </div>
+      ) : (
+        `no jsx element`
+      )}
       <div
         className={`style_fn_wrapper  ${
           pathname == p[0] ||
@@ -263,7 +264,7 @@ export default function DashboardLayout({
                           }`}>
                           <HomeOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Home</span>
+                        <span className="text">Dashboard</span>
                       </Link>
                     </li>
                     <li>
@@ -278,7 +279,7 @@ export default function DashboardLayout({
                           }`}>
                           <FaceOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Profile</span>
+                        <span className="text">User profile</span>
                       </Link>
                     </li>
                   </ul>
@@ -301,7 +302,7 @@ export default function DashboardLayout({
                           }`}>
                           <ImageOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Image</span>
+                        <span className="text">Image generator</span>
                       </Link>
                     </li>
                     <li>
@@ -316,7 +317,7 @@ export default function DashboardLayout({
                           }`}>
                           <VideocamOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Video</span>
+                        <span className="text">Video generator</span>
                       </Link>
                     </li>
                     <li>
@@ -331,26 +332,11 @@ export default function DashboardLayout({
                           }`}>
                           <AudiotrackOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Audio</span>
+                        <span className="text">Audio generator</span>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/chat"
-                        className="fn__tooltip menu__item"
-                        data-position="right"
-                        title="Chat with bot">
-                        <span
-                          className={`icon ${
-                            pathname == p[3] && `icon_color`
-                          }`}>
-                          <ChatBubbleOutline className="fn__svg" />
-                        </span>
-                        <span className="text">Chat</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
+                      <a
                         href="/code"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -361,8 +347,23 @@ export default function DashboardLayout({
                           }`}>
                           <CodeOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Code</span>
-                      </Link>
+                        <span className="text">Code generator</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/chat"
+                        className="fn__tooltip menu__item"
+                        data-position="right"
+                        title="Chat with bot">
+                        <span
+                          className={`icon ${
+                            pathname == p[3] && `icon_color`
+                          }`}>
+                          <ChatBubbleOutline className="fn__svg" />
+                        </span>
+                        <span className="text">Chat bot</span>
+                      </a>
                     </li>
                   </ul>
                 </div>
