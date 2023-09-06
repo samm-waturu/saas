@@ -200,7 +200,7 @@ export default function DashboardLayout({
                   </div>
                   {state ? (
                     <div className="bar__item bar__item_mount">
-                      <a href=" " className="item_opener">
+                      <a className="item_opener">
                         <SyncAltOutlined
                           className="fn__svg"
                           style={{ color: " 72d105" }}
@@ -209,7 +209,7 @@ export default function DashboardLayout({
                     </div>
                   ) : (
                     <div className="bar__item bar__item_mount">
-                      <a href=" " className="item_opener">
+                      <a className="item_opener">
                         <SyncAltOutlined
                           className="fn__svg"
                           style={{ color: " dd0404" }}
@@ -336,7 +336,7 @@ export default function DashboardLayout({
                       </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/code"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -348,10 +348,10 @@ export default function DashboardLayout({
                           <CodeOutlined className="fn__svg" />
                         </span>
                         <span className="text">Code generator</span>
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/chat"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -363,7 +363,7 @@ export default function DashboardLayout({
                           <ChatBubbleOutline className="fn__svg" />
                         </span>
                         <span className="text">Chat bot</span>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
