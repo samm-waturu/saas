@@ -1,6 +1,6 @@
 import Link from "next/link";
 const autoDate = new Date().getFullYear();
-import { FontFetchHeebo} from "@/app/fonts/fonts";
+import { FontFetchSans } from "@/app/fonts/fonts";
 
 const Footer = () => {
   return (
@@ -8,7 +8,7 @@ const Footer = () => {
       <footer className="style_fn_footer">
         <div className="style_fn_footer_content">
           <div className="copyright">
-            <div className={FontFetchHeebo.className}>
+            <div className={FontFetchSans.className}>
               <p>
                 <span>{`${autoDate}`}</span>
 
@@ -23,7 +23,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="menu_items">
-            <div className={FontFetchHeebo.className}>
+            <div className={FontFetchSans.className}>
               <ul>
                 <li>
                   <Link href="/privacy">Privacy Policy</Link>

@@ -1,10 +1,10 @@
 "use client";
-import { FontFetchHeebo } from "@/app/fonts/fonts";
+import { useForm } from "react-hook-form";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { useUser } from "@clerk/nextjs";
 import ChatCompletionRequestMessage from "openai";
+import { useUser } from "@clerk/nextjs";
+import { FontFetchHeebo } from "@/app/fonts/fonts";
 import FlipMove from "react-flip-move";
 import axios from "axios";
 import {
@@ -13,39 +13,29 @@ import {
   CloseOutlined
 } from "@mui/icons-material";
 
-function Code() {
+function Chat() {
   const { user } = useUser();
+  if (!user) {
+    return null;
+  }
   const userName = user?.firstName;
+  // console.log(user?.firstName)
   const random = Math.floor(Math.random() * 2);
-  const [prompts, setPrompts] = useState<
-    ChatCompletionRequestMessage[]
-  >([]);
-  const feedRef = useRef(null);
-  const feedContainerRef = useRef(null);
-  useEffect(() => {
-    if (feedContainerRef.current) {
-      feedContainerRef.current.scrollTop =
-        feedContainerRef.current.scrollIntoView({
-          behavior: "smooth"
-        });
-    }
-  }, [prompts]);
+  // console.log(random);
+  const router = useRouter();
   const [value, setValue] = useState("");
   const [string, setString] = useState("");
   const [style, setStyle] = useState("");
   const [loading, setLoading] = useState("");
+  const [prompts, setPrompts] = useState<
+    ChatCompletionRequestMessage[]
+  >([]);
   const [type, setType] = useState("neww");
-
-  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-
-  /*  prompts.map((prompt) => {
-    console.log(prompt)
-  })*/
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -54,54 +44,55 @@ function Code() {
 
       <div className="fn__title_holder">
         <div className="container">
-          <h1 className="title">Code generator</h1>
+          <h1 className="title">Chat with bot</h1>
         </div>
       </div>
 
       <div className="container">
         <div className="chat__list ">
           <div id="chat0" className="chat__item"></div>
-          <div className="chat__item active" id="chat1"></div>
-          <FlipMove>
-            {prompts.map(prompt =>
-              // @ts-ignore
-              prompt?.role == "user" ? (
-                <div className="chat__box your__chat">
-                  <div className="author">
-                    <span>{userName}</span>
+          <div className="chat__item active" id="chat1">
+            <FlipMove>
+              {prompts.map(prompt =>
+                // @ts-ignore
+                prompt?.role == "user" ? (
+                  <div className="chat__box your__chat">
+                    <div className="author">
+                      <span>{userName}</span>
+                    </div>
+                    <div className="chat">
+                      <p>
+                        {
+                          // @ts-ignore
+                          prompt?.content
+                        }
+                      </p>
+                    </div>
                   </div>
-                  <div className="chat">
-                    <p>
-                      {
-                        // @ts-ignore
-                        prompt?.content
-                      }
-                    </p>
+                ) : (
+                  <div className="chat__box bot__chat">
+                    <div className="author">
+                      <span>
+                        {
+                          // @ts-ignore
+                          prompt?.role
+                        }
+                      </span>
+                    </div>
+                    <div className="chat">
+                      <p>
+                        {
+                          // @ts-ignore
+                          prompt?.content
+                        }
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="chat__box bot__chat">
-                  <div className="author">
-                    <span>
-                      {
-                        // @ts-ignore
-                        prompt?.role
-                      }
-                    </span>
-                  </div>
-                  <div className="chat">
-                    <p>
-                      {
-                        // @ts-ignore
-                        prompt?.content
-                      }
-                    </p>
-                  </div>
-                </div>
-              )
-            )}
-          </FlipMove>
-          <div ref={feedContainerRef}></div>
+                )
+              )}
+            </FlipMove>
+          </div>
+
           {/*<div className="chat__item" id="chat2"></div>
 
             <div className="chat__item" id="chat3"></div>
@@ -115,13 +106,25 @@ function Code() {
           <div className={`fn__chat_comment ${type}`}>
             <div className="new__chat">
               <p>
-                Want some code snippets for your project? Feel free to
-                ask it!.
+                Ask it questions, engage in discussions, or simply
+                enjoy a friendly chat.
               </p>
             </div>
             <form
               onSubmit={handleSubmit((data: any, e: any) => {
                 const strLength = new String(data.textarea);
+                /*
+                if (strLength.length > 0 && strLength.length < 1) {
+                  setValue(`Type a lengither prompt!`);
+                  setStyle(`fade-in-bottom`);
+                  const timer = setTimeout(() => {
+                    setValue("");
+                    setStyle("");
+                  }, 5000);
+                  // console.log("Check on your prompt length");
+                }
+                */
+
                 async function post() {
                   try {
                     console.log("hello");
@@ -161,6 +164,7 @@ function Code() {
                   setValue("");
                   setStyle("");
                 }, 5000);
+                router.refresh();
               })}>
               <textarea
                 // @ts-ignore
@@ -171,12 +175,11 @@ function Code() {
                 // @ts-ignore
                 rows="1"
                 {...register("textarea", { required: true })}
-                autoFocus
                 value={string}
                 onChange={e => {
                   setString(e.target.value);
                 }}
-                placeholder="send prompt..."
+                placeholder="what was donald's trump first..."
                 id="fn__chat_textarea"></textarea>
 
               <button>
@@ -207,7 +210,20 @@ function Code() {
                   color: "rebeccapurple"
                 }}>
                 <span className={"fade-in-bottom"}>
-                  Type a valid prompt!{" "}
+                  A decent prompt is required{" "}
+                </span>
+              </p>
+            )}
+
+            {value && (
+              <p
+                className={"text-blur-out"}
+                style={{
+                  fontWeight: "bold",
+                  color: "rebeccapurple"
+                }}>
+                <span className={`${style} fade-in-bottom`}>
+                  {value}{" "}
                 </span>
               </p>
             )}
@@ -226,8 +242,8 @@ function Code() {
     <div className="chat__sidebar">
       <div className="sidebar_header">
         <a href="" className="fn__new_chat_link">
-          <span className="icon"></span>
-          <span className="text">New Chat</span>
+          {/* <span className="icon"></span> */}
+          <span className="text">Previous dialogues</span>
         </a>
       </div>
       <div className="sidebar_content">
@@ -265,4 +281,5 @@ function Code() {
     </div>
   ];
 }
-export default Code;
+
+export default Chat;

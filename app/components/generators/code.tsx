@@ -2,8 +2,8 @@
 import { FontFetchHeebo } from "@/app/fonts/fonts";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 import { useUser } from "@clerk/nextjs";
+import { useForm } from "react-hook-form";
 import ChatCompletionRequestMessage from "openai";
 import FlipMove from "react-flip-move";
 import axios from "axios";
@@ -43,9 +43,10 @@ function Code() {
     formState: { errors }
   } = useForm();
 
-  /*  prompts.map((prompt) => {
+  /* prompts.map((prompt) => {
     console.log(prompt)
   })*/
+
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -61,47 +62,49 @@ function Code() {
       <div className="container">
         <div className="chat__list ">
           <div id="chat0" className="chat__item"></div>
-          <div className="chat__item active" id="chat1"></div>
-          <FlipMove>
-            {prompts.map(prompt =>
-              // @ts-ignore
-              prompt?.role == "user" ? (
-                <div className="chat__box your__chat">
-                  <div className="author">
-                    <span>{userName}</span>
+          <div className="chat__item active" id="chat1">
+            <FlipMove>
+              {prompts.map(prompt =>
+                // @ts-ignore
+                prompt?.role == "user" ? (
+                  <div className="chat__box your__chat">
+                    <div className="author">
+                      <span>{userName}</span>
+                    </div>
+                    <div className="chat">
+                      <code>
+                        {
+                          // @ts-ignore
+                          prompt?.content
+                        }
+                      </code>
+                    </div>
                   </div>
-                  <div className="chat">
-                    <p>
-                      {
-                        // @ts-ignore
-                        prompt?.content
-                      }
-                    </p>
+                ) : (
+                  <div className="chat__box bot__chat">
+                    <div className="author">
+                      <span>
+                        {
+                          // @ts-ignore
+                          prompt?.role
+                        }
+                      </span>
+                    </div>
+                    <div className="chat">
+                      <code>
+                        {
+                          // @ts-ignore
+                          prompt?.content
+                        }
+                      </code>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="chat__box bot__chat">
-                  <div className="author">
-                    <span>
-                      {
-                        // @ts-ignore
-                        prompt?.role
-                      }
-                    </span>
-                  </div>
-                  <div className="chat">
-                    <p>
-                      {
-                        // @ts-ignore
-                        prompt?.content
-                      }
-                    </p>
-                  </div>
-                </div>
-              )
-            )}
-          </FlipMove>
-          <div ref={feedContainerRef}></div>
+                )
+              )}
+            </FlipMove>
+            <div ref={feedContainerRef}></div>
+          </div>
+
           {/*<div className="chat__item" id="chat2"></div>
 
             <div className="chat__item" id="chat3"></div>
@@ -124,17 +127,18 @@ function Code() {
                 const strLength = new String(data.textarea);
                 async function post() {
                   try {
-                    console.log("hello");
+                    console.log("request sent");
                     const userPrompt: ChatCompletionRequestMessage = {
                       // @ts-ignore
                       role: "user",
                       content: strLength
                     };
-
+                    // Finetuning
+                    
                     const newPrompts = [...prompts, userPrompt];
 
                     const responseApi = await axios.post(
-                      "/api/chat",
+                      "/api/chat,
                       {
                         prompts: newPrompts
                       }
@@ -156,27 +160,23 @@ function Code() {
                 // setValue(`Prompt sent!`);
                 setLoading("loading");
                 setString("");
-                setStyle(`fade-in-bottom`);
-                const timer = setTimeout(() => {
-                  setValue("");
-                  setStyle("");
-                }, 5000);
+                router.refresh();
               })}>
               <textarea
                 // @ts-ignore
                 rows="1"
                 className="fn__hidden_textarea"
-                tabindex="-1"></textarea>
+                // @ts-ignore
+                tabIndex="-1"></textarea>
               <textarea
                 // @ts-ignore
                 rows="1"
                 {...register("textarea", { required: true })}
-                autoFocus
                 value={string}
                 onChange={e => {
                   setString(e.target.value);
                 }}
-                placeholder="send prompt..."
+                placeholder="Send prompt..."
                 id="fn__chat_textarea"></textarea>
 
               <button>
@@ -227,7 +227,7 @@ function Code() {
       <div className="sidebar_header">
         <a href="" className="fn__new_chat_link">
           <span className="icon"></span>
-          <span className="text">New Chat</span>
+          <span className="text">Dialogues</span>
         </a>
       </div>
       <div className="sidebar_content">
@@ -236,7 +236,32 @@ function Code() {
           <ul className="group__list">
             <li className="group__item">
               <div className="fn__chat_link active">
-                <span className="text">current chat</span>
+                <span className="text">Current Chat</span>
+                <input type="text" value="Chat Bot Definition" />
+                <span className="options">
+                  <button className="trigger">
+                    <span></span>
+                  </button>
+                  <span className="options__popup">
+                    <span className="options__list">
+                      <button className="edit">Edit</button>
+                      <button className="delete">Delete</button>
+                    </span>
+                  </span>
+                </span>
+                <span className="save_options">
+                  <button className="save">
+                    <CheckOutlined className="fn__svg" />
+                  </button>
+                  <button className="cancel">
+                    <CloseOutlined className="fn__svg" />
+                  </button>
+                </span>
+              </div>
+            </li>
+            <li className="group__item">
+              <div className="fn__chat_link active">
+                <span className="text">Other Chat topic</span>
                 <input type="text" value="Chat Bot Definition" />
                 <span className="options">
                   <button className="trigger">
@@ -265,4 +290,5 @@ function Code() {
     </div>
   ];
 }
+
 export default Code;

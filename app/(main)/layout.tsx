@@ -65,7 +65,7 @@ export default function DashboardLayout({
         : null;
       setState(true);
       console.log(
-        `Script mounted + you are on ${pathname} page section ${p[3]}`
+        `Script mounted + you are on ${pathname}`
       );
     };
     e();
@@ -336,7 +336,7 @@ export default function DashboardLayout({
                       </Link>
                     </li>
                     <li>
-                      <Link
+                      <a
                         href="/code"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -348,10 +348,10 @@ export default function DashboardLayout({
                           <CodeOutlined className="fn__svg" />
                         </span>
                         <span className="text">Code generator</span>
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link
+                      <a
                         href="/chat"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -363,7 +363,7 @@ export default function DashboardLayout({
                           <ChatBubbleOutline className="fn__svg" />
                         </span>
                         <span className="text">Chat bot</span>
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </div>

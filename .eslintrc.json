@@ -1,6 +1,6 @@
 /* eslint-disable no-console, no-control-regex*/
 {
-  "extends": "next/core-web-vitals",
+  // "extends": "next/core-web-vitals",
   "env": {
     "browser": true,
     "node": true,
