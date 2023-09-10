@@ -91,7 +91,7 @@ export default function DashboardLayout({
               <option value="10">10 px</option>
               <option value="12">12 px</option>
               <option value="14">14 px</option>
-              <option value="16" selected>
+              <option value="16" defaultValue>
                 16 px
               </option>
               <option value="18">18 px</option>
@@ -291,7 +291,7 @@ export default function DashboardLayout({
                   </div>
                   <ul className="group__list">
                     <li>
-                      <Link
+                      <a
                         href="/image"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -303,10 +303,10 @@ export default function DashboardLayout({
                           <ImageOutlined className="fn__svg" />
                         </span>
                         <span className="text">Image generator</span>
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link
+                      <a
                         href="/video"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -318,10 +318,10 @@ export default function DashboardLayout({
                           <VideocamOutlined className="fn__svg" />
                         </span>
                         <span className="text">Video generator</span>
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link
+                      <a
                         href="/audio"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -333,7 +333,7 @@ export default function DashboardLayout({
                           <AudiotrackOutlined className="fn__svg" />
                         </span>
                         <span className="text">Audio generator</span>
-                      </Link>
+                      </a>
                     </li>
                     <li>
                       <a

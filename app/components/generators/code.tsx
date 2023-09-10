@@ -138,7 +138,7 @@ function Code() {
                     const newPrompts = [...prompts, userPrompt];
 
                     const responseApi = await axios.post(
-                      "/api/chat,
+                      "/api/chat/chat,
                       {
                         prompts: newPrompts
                       }

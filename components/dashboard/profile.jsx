@@ -17,9 +17,9 @@ const Profile = ({prop}) => {
         <div className="style_fn_user_profile">
           <div className="user__profile">
             {/*profile SSR*/}
-            <div className="user_avatar">
+{/*            <div className="user_avatar">
               <Image src={!prop ? placeHolderLarge : null} alt="" />
-            </div>
+            </div>*/}
             <div className="user_details">
               <div className={FontFetchHeebo.className}>
                 <ul>
@@ -63,9 +63,9 @@ const Profile = ({prop}) => {
             </div>
             <div className="plan_right">
               <div className={FontFetchHeebo.className}>
-                <Link href="/billing" className="token_upgrade style_fn_button">
+                <a href="/billing" className="token_upgrade style_fn_button">
                   <span>Upgrade</span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

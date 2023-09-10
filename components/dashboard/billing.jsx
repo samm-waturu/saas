@@ -1,6 +1,9 @@
+
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
 
-const Billing = () => {
+function Billing() {
+ 
+
   return (
     <div className={FontFetchHeebo.className}>
       <div className="style_fn_pagetitle">
@@ -63,24 +66,18 @@ const Billing = () => {
                     </div>
                     <div className="action">
                       <div className="edit_wrapper">
-                        <a
-                          href="#"
-                          className="options">
+                        <a href="#" className="options">
                           <span className="dots"></span>
                         </a>
                         <div className="edit__popup">
                           <ul>
                             <li>
-                              <a
-                                href="#"
-                                className="edit">
+                              <a href="#" className="edit">
                                 Edit
                               </a>
                             </li>
                             <li>
-                              <a
-                                href="#"
-                                className="delete">
+                              <a href="#" className="delete">
                                 Delete
                               </a>
                             </li>
@@ -100,24 +97,18 @@ const Billing = () => {
                     </div>
                     <div className="action">
                       <div className="edit_wrapper">
-                        <a
-                          href="#"
-                          className="options">
+                        <a href="#" className="options">
                           <span className="dots"></span>
                         </a>
                         <div className="edit__popup">
                           <ul>
                             <li>
-                              <a
-                                href="#"
-                                className="edit">
+                              <a href="#" className="edit">
                                 Edit
                               </a>
                             </li>
                             <li>
-                              <a
-                                href="#"
-                                className="delete">
+                              <a href="#" className="delete">
                                 Delete
                               </a>
                             </li>
@@ -132,9 +123,7 @@ const Billing = () => {
                 </li>
                 <li className="payment__list_item new">
                   <div className="item">
-                    <a
-                      href="#"
-                      className="fn__full_link"></a>
+                    <a href="#" className="fn__full_link"></a>
                     <span className="add"></span>
                     <span className="text">Add new</span>
                   </div>
@@ -146,6 +135,6 @@ const Billing = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Billing;

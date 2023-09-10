@@ -92,7 +92,7 @@ const Video = ({ prop }) => {
                 <textarea
                   className="fn__hidden_textarea"
                   rows="1"
-                  tabindex="-1"></textarea>
+                  tabIndex="-1"></textarea>
               </div>
 
               <div className="generate_section">
@@ -275,7 +275,7 @@ const Video = ({ prop }) => {
               </h4>
               <div className="img_size_select">
                 <select disabled>
-                  <option value="512_512" selected>
+                  <option value="512_512" defaultValue>
                     540p
                   </option>
                   <option value="360">360p</option>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
 import ChatCompletionRequestMessage from "openai";
+import ReactMarkdown from "react-markdown";
 import FlipMove from "react-flip-move";
 import axios from "axios";
 import {
@@ -43,9 +44,9 @@ function Chat() {
     formState: { errors }
   } = useForm();
 
-  /* prompts.map((prompt) => {
+   prompts.map((prompt) => {
     console.log(prompt)
-  })*/
+  })
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -80,7 +81,7 @@ function Chat() {
                     </div>
                   </div>
                 ) : (
-                  <div className="chat__box bot__chat">
+                  <div className="chat__box bot__chat" >
                     <div className="author">
                       <span>
                         {
@@ -89,13 +90,13 @@ function Chat() {
                         }
                       </span>
                     </div>
-                    <div className="chat">
-                      <p>
+                    <div className="chat" style={{ maxHeight: "500px", overflow: "auto"}}>
+                      <ReactMarkdown>
                         {
                           // @ts-ignore
                           prompt?.content
                         }
-                      </p>
+                      </ReactMarkdown>
                     </div>
                   </div>
                 )
@@ -136,7 +137,7 @@ function Chat() {
                     const newPrompts = [...prompts, userPrompt];
 
                     const responseApi = await axios.post(
-                      "/api/chat",
+                      "/api/chat/",
                       {
                         prompts: newPrompts
                       }

@@ -8,22 +8,27 @@ const openai = new OpenAi({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-// Fine tuning
-const fineTune: ChatCompletionRequestMessage = {
-  role: "system",
-  content:"You are strictly a code generator. Only answer in markdown code snippets and use code comments for code explanations"
-};
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { prompts } = body;
-    const responseApi = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      // Using the spread operator to destructure an prompts
-      messages: [fineTune, ...prompts]
+
+    const { prompt, amount, resolution } = body;
+
+    if (!prompt || !amount || !resolution) {
+      return NextResponse.json({
+        message:
+          "Either the prompt, amount or resolution is invalid or missing!",
+        success: false,
+        status: 500
+      });
+    }
+
+    const responseApi = await openai.images.generate({
+      prompt: prompt,
+      n: parseInt(amount, 10),
+      size: resolution
     });
-    return NextResponse.json(responseApi.choices[0].message);
+    return NextResponse.json(responseApi.data);
     /*
     return NextResponse.json({
       message: responseApi.choices[0].message,
@@ -34,7 +39,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.log(err);
     return NextResponse.json({
-      message: err,
+      message: `${err} Error`,
       success: false,
       status: 500
     });

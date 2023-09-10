@@ -7,6 +7,7 @@ import { useUser } from "@clerk/nextjs";
 import ChatCompletionRequestMessage from "openai";
 import FlipMove from "react-flip-move";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
 import {
   SendOutlined,
   CheckOutlined,
@@ -89,13 +90,25 @@ function Code() {
                       }
                     </span>
                   </div>
-                  <div className="chat">
-                    <p>
+                  <div className="chat" style={{ maxHeight: "500px", overflow: "auto"}} >
+                    <ReactMarkdown
+                      components={{
+                        pre: ({ node, ...props }) => (
+                          <div style={{lineHeight: 2.4, padding: 24}}>
+                            <pre {...props} />
+                          </div>
+                        ),
+                        code: ({ node, ...props }) => (
+                          <code style={{ fontSize: 14, padding: 2, borderLeft: "2px solid #7c5fe3"}}
+                            {...props}
+                          />
+                        )
+                      }}>
                       {
                         // @ts-ignore
                         prompt?.content
                       }
-                    </p>
+                    </ReactMarkdown>
                   </div>
                 </div>
               )
@@ -134,7 +147,7 @@ function Code() {
                     const newPrompts = [...prompts, userPrompt];
 
                     const responseApi = await axios.post(
-                      "/api/chat",
+                      "/api/code",
                       {
                         prompts: newPrompts
                       }
@@ -156,11 +169,7 @@ function Code() {
                 // setValue(`Prompt sent!`);
                 setLoading("loading");
                 setString("");
-                setStyle(`fade-in-bottom`);
-                const timer = setTimeout(() => {
-                  setValue("");
-                  setStyle("");
-                }, 5000);
+                router.refresh();
               })}>
               <textarea
                 // @ts-ignore

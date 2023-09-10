@@ -12,34 +12,7 @@ const Setting = () => {
           <form>
             <div className="user__settings">
               {/* Left settings field */}
-              <div className="settings_left">
-                <label className="fn__upload">
-                  <span className="upload_content">
-                    <UploadFileOutlinedIcon className="fn__svg" />
-                    <span className="title">Drag & Drop a Image</span>
-                    <hr />
-                    <span>
-                      <span className="line">----</span>
-                      <span className="text">Or</span>
-                      <span className="line">----</span>
-                    </span>
-                    <span className="title">Browse</span>
-                    <span className="desc">
-                      Supports JPG, JPEG, and PNG
-                    </span>
-                  </span>
-                  <span className="upload_preview">
-                    <a
-                      href="#"
-                      className="fn__closer fn__icon_button">
-                      {/* <img src="svg/close.svg" alt="" className="fn__svg" /> */}
-                    </a>
-                    {/* <img src="user-settings.html#" alt="" className="preview_img" /> */}
-                  </span>
-
-                  <input type="file" accept="image/*" />
-                </label>
-              </div>
+             
               {/* Right settings field */}
               <div className="settings_right">
                 <div className="item">
