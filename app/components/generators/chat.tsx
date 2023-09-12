@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ChatCompletionRequestMessage from "openai";
+import { storeResponse } from "@/lib/store";
 import { useUser } from "@clerk/nextjs";
 import { FontFetchHeebo } from "@/app/fonts/fonts";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import FlipMove from "react-flip-move";
 import axios from "axios";
 import {
@@ -12,6 +14,7 @@ import {
   CheckOutlined,
   CloseOutlined
 } from "@mui/icons-material";
+import { TextField, Button, MuiAlert, Snackbar } from "@mui/material";
 
 function Chat() {
   const { user } = useUser();
@@ -31,11 +34,13 @@ function Chat() {
     ChatCompletionRequestMessage[]
   >([]);
   const [type, setType] = useState("neww");
+  const [copyState, setcopyState] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
+  console.log("hello");
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -86,6 +91,41 @@ function Chat() {
                           prompt?.content
                         }
                       </p>
+                      {/*Using the imported component */}
+                      <CopyToClipboard
+                        text={prompt?.content}
+                        onCopy={() => setcopyState(true)}>
+                        {/* single child to which event is applied*/}
+
+                        <div className="copy-area">
+                          {/*button to copy text */}
+                          <Button variant="contained">
+                            Click to Copy
+                          </Button>
+                        </div>
+                      </CopyToClipboard>
+                      {/*  Snackbar that shows when the text is copied*/}
+                      <Snackbar
+                        // invoke snack bar when open is true
+                        open={copyState}
+                        // close after three seconds
+                        autoHideDuration={3000}
+                        // function called after three seconds
+                        onClose={() => setcopyState(false)}
+                        // where the snack bar must be shown
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "center"
+                        }}>
+                        <MuiAlert
+                          // function called by clicking the close icon
+                          onClose={() => setcopyState(false)}
+                          // color of snack bar
+                          severity="success"
+                          sx={{ width: "100%" }}>
+                          Copied Text
+                        </MuiAlert>
+                      </Snackbar>
                     </div>
                   </div>
                 )
@@ -147,6 +187,14 @@ function Chat() {
                       userPrompt,
                       responseApi.data
                     ]);
+
+                    console.log(userPrompt.content);
+
+                    /*if(!prompt){
+                      const response = prompts.slice(0, 1).map((prompt) => {
+                      await storeResponse(userPrompt.content, )
+                    })
+                    }*/
                     setType("");
                     setLoading("");
                   } catch (error: any) {

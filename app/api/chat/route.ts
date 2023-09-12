@@ -12,57 +12,59 @@ const openai = new OpenAi({
   apiKey: process.env.OPENAI_API_KEY
 });
 
+// const count = await checkCount
 // fine tuning
 const fineTune: ChatCompletionRequestMessage = {
   role: "system",
   content:
     "You are a concise chat generator. Only Give brief, short and concise responses"
 };
+
 export async function POST(request: Request) {
   try {
-    const { userId } = auth();
-    const count = await checkCount();
     const body = await request.json();
+
     const { prompts } = body;
 
-  /*  if (!userId) {
-      return NextResponse.json({
-        message: "Not authorized",
-        success: false,
-        status: 401
-      });
-    }
+    const { userId } = auth();
+
+    // Check if our api-key is valid
 
     if (!openai.apiKey) {
-      return NextResponse.json({
-        message: "API key invalid",
-        succes: false,
-        status: 500
-      });
+      return NextResponse("APIKEY_INVALID", { status: 500 });
     }
+
+    // Check if we have a logged in user
+
+    if (!userId) {
+      return NextResponse("NOT_AUTHORIZED", { status: 401 });
+    }
+
+    // Check if we have passed a prompt
 
     if (!prompts) {
-      return NextResponse.json({
-        message: "Prompts required",
-        success: false,
-        status: 400
-      });
+      return NextResponse("PROMPT_INVALID", { status: 400 });
     }
 
+    // Check if token limit is available
+
+    const count = await checkCount();
+
     if (!count) {
-      return NextResponse.json({
-        message: "Free trial has expired",
-        success: false,
-        status: 403
-      });
-    }*/
+      return NextResponse("TOKEN_LIMIT_EXCEEDED", { status: 403 });
+    }
 
     const responseApi = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       // Using the spread operator to destructure an prompts
       messages: [fineTune, ...prompts]
+      // max_tokens: 10
     });
+
+    await initCount();
+
     return NextResponse.json(responseApi.choices[0].message);
+
     /*
     return NextResponse.json({
       message: responseApi.choices[0].message,
@@ -70,18 +72,8 @@ export async function POST(request: Request) {
       status: 200
     });
     */
-  /*  if(responseApi){
-    
-    await initCount()
-    }
-    */
-
-  } catch (err) {
-    console.log(err);
-    return NextResponse.json({
-      message: err,
-      success: false,
-      status: 500
-    });
+  } catch (e) {
+    // console.log(err);
+    return NextResponse("SERVER_ERROR", { status: 500 });
   }
 }

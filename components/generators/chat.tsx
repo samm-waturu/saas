@@ -44,9 +44,6 @@ function Chat() {
     formState: { errors }
   } = useForm();
 
-   prompts.map((prompt) => {
-    console.log(prompt)
-  })
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -67,7 +64,9 @@ function Chat() {
               {prompts.map(prompt =>
                 // @ts-ignore
                 prompt?.role == "user" ? (
-                  <div className="chat__box your__chat">
+                  <div
+                    className="chat__box your__chat"
+                    key={prompt?.content}>
                     <div className="author">
                       <span>{userName}</span>
                     </div>
@@ -81,7 +80,9 @@ function Chat() {
                     </div>
                   </div>
                 ) : (
-                  <div className="chat__box bot__chat" >
+                  <div
+                    className="chat__box bot__chat"
+                    key={prompt?.content}>
                     <div className="author">
                       <span>
                         {
@@ -90,7 +91,12 @@ function Chat() {
                         }
                       </span>
                     </div>
-                    <div className="chat" style={{ maxHeight: "500px", overflow: "auto"}}>
+                    <div
+                      className="chat"
+                      style={{
+                        maxHeight: "500px",
+                        overflow: "auto"
+                      }}>
                       <ReactMarkdown>
                         {
                           // @ts-ignore
@@ -147,6 +153,9 @@ function Chat() {
                       userPrompt,
                       responseApi.data
                     ]);
+
+                    console.log(responseApi.data)
+
                     setType("");
                     setLoading("");
                   } catch (error: any) {

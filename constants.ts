@@ -1,4 +1,1 @@
-const MAXTOKENCOUNT = 5
-
-export default MAXTOKENCOUNT
-	
+export const MAX_TOKEN_COUNT = 10
