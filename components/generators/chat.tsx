@@ -5,15 +5,20 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
 import ChatCompletionRequestMessage from "openai";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import ReactMarkdown from "react-markdown";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { Button } from "@mui/material";
 import FlipMove from "react-flip-move";
 import axios from "axios";
 import {
   SendOutlined,
   CheckOutlined,
+  ContentCopyOutlined,
   CloseOutlined
 } from "@mui/icons-material";
-
+const date = new Date().getFullYear
 function Chat() {
   const { user } = useUser();
   const userName = user?.firstName;
@@ -36,14 +41,16 @@ function Chat() {
   const [style, setStyle] = useState("");
   const [loading, setLoading] = useState("");
   const [type, setType] = useState("neww");
-
+  const [copyState, setcopyState] = useState(false);
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-
+  prompts.map(prompt => {
+    console.log(prompt);
+  });
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -103,6 +110,42 @@ function Chat() {
                           prompt?.content
                         }
                       </ReactMarkdown>
+                      {/*Using the imported component */}
+                      <CopyToClipboard
+                        text={prompt?.content}
+                        onCopy={() => setcopyState(true)}>
+                        {/* single child to which event is applied*/}
+
+                        <div className="copy-area">
+                          {/*button to copy text */}
+                          <Button variant="contained">
+                            <ContentCopyOutlined className="fn__svg" />
+                          </Button>
+                        </div>
+                      </CopyToClipboard>
+                      {/*  Snackbar that shows when the text is copied*/}
+                      <Snackbar
+                        style={{ marginTop: 150 }}
+                        // invoke snack bar when open is true
+                        open={copyState}
+                        // close after three seconds
+                        autoHideDuration={3000}
+                        // function called after three seconds
+                        onClose={() => setcopyState(false)}
+                        // where the snack bar must be shown
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "center"
+                        }}>
+                        <MuiAlert
+                          // function called by clicking the close icon
+                          onClose={() => setcopyState(false)}
+                          // color of snack bar
+                          severity="success"
+                          sx={{ width: "100%" }}>
+                          Copied Text
+                        </MuiAlert>
+                      </Snackbar>
                     </div>
                   </div>
                 )
@@ -111,11 +154,11 @@ function Chat() {
             <div ref={feedContainerRef}></div>
           </div>
 
-          {/*<div className="chat__item" id="chat2"></div>
+          <div className="chat__item" id="chat2"></div>
 
-            <div className="chat__item" id="chat3"></div>
+          <div className="chat__item" id="chat3"></div>
 
-            <div className="chat__item" id="chat4"></div> */}
+          <div className="chat__item" id="chat4"></div>
         </div>
       </div>
 
@@ -148,13 +191,14 @@ function Chat() {
                         prompts: newPrompts
                       }
                     );
+
                     setPrompts(current => [
                       ...current,
                       userPrompt,
                       responseApi.data
                     ]);
 
-                    console.log(responseApi.data)
+                    // console.log(userPrompt)
 
                     setType("");
                     setLoading("");
@@ -236,7 +280,7 @@ function Chat() {
       <div className="sidebar_header">
         <a href="" className="fn__new_chat_link">
           <span className="icon"></span>
-          <span className="text">Dialogues</span>
+          <span className="text">New Dialogue</span>
         </a>
       </div>
       <div className="sidebar_content">

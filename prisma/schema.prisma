@@ -18,14 +18,3 @@ model TokenCountLimit {
   updatedAT DateTime @updatedAt
 
 }
-
-model StoreResponseBody {
-  id String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String    @unique
-  user String @db.ObjectId
-  prompt String
-  response String
-  createdAT DateTime @default(now())
-  updatedAT DateTime @updatedAt
-
-}
