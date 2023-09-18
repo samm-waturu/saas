@@ -1,10 +1,7 @@
-
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
 
-function Billing() {
- 
-
-  return (
+const Billing = () => {
+  return [
     <div className={FontFetchHeebo.className}>
       <div className="style_fn_pagetitle">
         <h2 className="title">User Billing</h2>
@@ -134,7 +131,7 @@ function Billing() {
         </div>
       </div>
     </div>
-  );
-}
+  ];
+};
 
 export default Billing;

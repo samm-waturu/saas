@@ -1,6 +1,6 @@
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
 const Pricing = () => {
-  return (
+  return [
     <div className={FontFetchHeebo.className}>
       <div className="style_fn_pricing_page">
         <div
@@ -601,6 +601,6 @@ const Pricing = () => {
         </div>
       </div>
     </div>
-  );
+  ];
 };
 export default Pricing;

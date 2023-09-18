@@ -1,6 +1,6 @@
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
 const Privacy = () => {
-  return (
+  return [
     <div className={FontFetchHeebo.className}>
       <div className="style_fn_privacy_page">
         <div className="style_fn_pagetitle">
@@ -69,9 +69,7 @@ const Privacy = () => {
             </p>
             <hr />
 
-            <h4 className="">
-              Embedded content from other websites
-            </h4>
+            <h4 className="">Embedded content from other websites</h4>
             <p>
               Suggested text: Articles on this site may include
               embedded content (e.g. videos, images, articles, etc.).
@@ -88,9 +86,7 @@ const Privacy = () => {
             </p>
             <hr />
 
-            <h4 className="">
-              Who we share your data with
-            </h4>
+            <h4 className="">Who we share your data with</h4>
             <p>
               Suggested text: If you request a password reset, your IP
               address will be included in the reset email.
@@ -98,9 +94,8 @@ const Privacy = () => {
           </div>
         </div>
       </div>
-
     </div>
-  );
+  ];
 };
 
 export default Privacy;

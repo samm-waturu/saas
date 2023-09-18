@@ -16,9 +16,10 @@ import {
   SendOutlined,
   CheckOutlined,
   ContentCopyOutlined,
-  CloseOutlined
+  CloseOutlined,
+  QuestionMarkOutlined,
+  InfoOutlined
 } from "@mui/icons-material";
-const date = new Date().getFullYear
 function Chat() {
   const { user } = useUser();
   const userName = user?.firstName;
@@ -41,16 +42,27 @@ function Chat() {
   const [style, setStyle] = useState("");
   const [loading, setLoading] = useState("");
   const [type, setType] = useState("neww");
+  const [hold, setHolder] = useState("what is operator overload...")
   const [copyState, setcopyState] = useState(false);
+  const lecOptions = [
+    "",
+    "(With strict reference to System analysis and design (SAD) topics)",
+    "(With strict reference to Database management system (DBMS) topics)",
+    "(With strict reference to Object oriented programming (OOP) topics)",
+    "(With strict reference to Computer applications)",
+    "(With strict reference to Microsoft Visual basic)"
+  ];
+  const [option, setOption] = useState(lecOptions[0]);
+  console.log(option);
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-  prompts.map(prompt => {
-    console.log(prompt);
-  });
+  /*  prompts.slice(0, 1).map(prompt => {
+    console.log(prompt?.content);
+  });*/
   return [
     <div className="chat__page">
       <div className="font__trigger">
@@ -119,13 +131,15 @@ function Chat() {
                         <div className="copy-area">
                           {/*button to copy text */}
                           <Button variant="contained">
-                            <ContentCopyOutlined className="fn__svg" />
+                            <ContentCopyOutlined
+                              sx={{ fontSize: "16px" }}
+                            />
                           </Button>
                         </div>
                       </CopyToClipboard>
                       {/*  Snackbar that shows when the text is copied*/}
                       <Snackbar
-                        style={{ marginTop: 150 }}
+                        style={{ marginTop: 120 }}
                         // invoke snack bar when open is true
                         open={copyState}
                         // close after three seconds
@@ -153,12 +167,11 @@ function Chat() {
             </FlipMove>
             <div ref={feedContainerRef}></div>
           </div>
-
-          <div className="chat__item" id="chat2"></div>
+          {/*<div className="chat__item" id="chat2"></div>
 
           <div className="chat__item" id="chat3"></div>
 
-          <div className="chat__item" id="chat4"></div>
+          <div className="chat__item" id="chat4"></div>*/}
         </div>
       </div>
 
@@ -173,10 +186,14 @@ function Chat() {
             </div>
             <form
               onSubmit={handleSubmit((data: any, e: any) => {
-                const strLength = new String(data.textarea);
+                const strLength = new String(
+                  `${data.textarea} ${option}`
+                );
                 async function post() {
                   try {
-                    console.log("request sent");
+
+                    setHolder("sending...")
+
                     const userPrompt: ChatCompletionRequestMessage = {
                       // @ts-ignore
                       role: "user",
@@ -202,8 +219,10 @@ function Chat() {
 
                     setType("");
                     setLoading("");
+                    setHolder("what is operator overload...")
                   } catch (error: any) {
                     console.log(error);
+                    setHolder("what is operator overload...")
                     setType("neww");
                     setLoading("");
                   }
@@ -229,7 +248,7 @@ function Chat() {
                 onChange={e => {
                   setString(e.target.value);
                 }}
-                placeholder="send prompt..."
+                placeholder={hold}
                 id="fn__chat_textarea"></textarea>
 
               <button>
@@ -279,66 +298,148 @@ function Chat() {
     <div className="chat__sidebar">
       <div className="sidebar_header">
         <a href="" className="fn__new_chat_link">
-          <span className="icon"></span>
-          <span className="text">New Dialogue</span>
+          <QuestionMarkOutlined className="icon" />
+          <span className="text">Questions</span>
         </a>
       </div>
+
       <div className="sidebar_content">
         <div className="chat__group new">
-          <h2 className="group__title">Today</h2>
+          <h2 className="group__title">
+            Choose your Lecture
+            <span
+              style={{ padding: 5 }}
+              className="fn__tooltip"
+              title="Choose your unit">
+              <InfoOutlined sx={{ fontSize: "14px" }} />
+            </span>
+          </h2>
           <ul className="group__list">
-            <li className="group__item">
-              <div className="fn__chat_link active">
-                <span className="text">Current Chat</span>
-                <input type="text" value="Chat Bot Definition" />
-                <span className="options">
-                  <button className="trigger">
-                    <span></span>
-                  </button>
-                  <span className="options__popup">
-                    <span className="options__list">
-                      <button className="edit">Edit</button>
-                      <button className="delete ">Delete</button>
+            <select
+              name=""
+              id=""
+              defaultValue={option}
+              onChange={e => {
+                setOption(event.target.value);
+              }}>
+
+              <option value={lecOptions[1]}>
+                <li className="group__item">
+                  <div className="fn__chat_link ">
+                    <span className="text">
+                      System analysis & design
                     </span>
-                  </span>
-                </span>
-                <span className="save_options">
-                  <button className="save">
-                    <CheckOutlined className="fn__svg" />
-                  </button>
-                  <button className="cancel">
-                    <CloseOutlined className="fn__svg" />
-                  </button>
-                </span>
-              </div>
-            </li>
-            <li className="group__item">
-              <div className="fn__chat_link active">
-                <span className="text">Other Chat topic</span>
-                <input type="text" value="Chat Bot Definition" />
-                <span className="options">
-                  <button className="trigger">
-                    <span></span>
-                  </button>
-                  <span className="options__popup">
-                    <span className="options__list">
-                      <button className="edit">Edit</button>
-                      <button className="delete">Delete</button>
+                  </div>
+                </li>{" "}
+              </option>
+              <option value={lecOptions[2]}>
+                <li className="group__item">
+                  <div className="fn__chat_link ">
+                    <span className="text">
+                      Database management sys...
                     </span>
-                  </span>
-                </span>
-                <span className="save_options">
-                  <button className="save">
-                    <CheckOutlined className="fn__svg" />
-                  </button>
-                  <button className="cancel">
-                    <CloseOutlined className="fn__svg" />
-                  </button>
-                </span>
-              </div>
-            </li>
+                  </div>
+                </li>{" "}
+              </option>
+              <option value={lecOptions[3]}>
+                <li className="group__item">
+                  <div className="fn__chat_link ">
+                    <span className="text">
+                      Object oriented progra...
+                    </span>
+                  </div>
+                </li>{" "}
+              </option>
+              <option value={lecOptions[4]}>
+                <li className="group__item">
+                  <div className="fn__chat_link ">
+                    <span className="text">
+                      Computer applications
+                    </span>
+                  </div>
+                </li>{" "}
+              </option>
+              <option value={lecOptions[5]}>
+                <li className="group__item">
+                  <div className="fn__chat_link ">
+                    <span className="text">
+                      Microsoft Visual basic
+                    </span>
+                  </div>
+                </li>{" "}
+              </option>
+              <option value={lecOptions[0]}>
+                 <li className="group__item">
+                  <div className="fn__chat_link ">
+                    <span className="text">
+                      General chat
+                    </span>
+                  </div>
+                </li>{" "}
+              </option>
+            </select>
           </ul>
         </div>
+        <div
+          className="chat__group new"
+          style={{
+            maxHeight: "800px",
+            overflow: "auto",
+            marginTop: "20px"
+          }}>
+          <h2 className="group__title">
+            Today's queries
+            <span
+              style={{ padding: 5 }}
+              className="fn__tooltip"
+              title="The questions you've asked today ">
+              <InfoOutlined sx={{ fontSize: "14px" }} />
+            </span>
+          </h2>
+          <ul className="group__list">
+            {prompts.map(prompt =>
+              prompt?.role == "user" ? (
+                <li className="group__item">
+                  <div className="fn__chat_link">
+                    <span className="text">{prompt?.content}</span>
+                    <span className="options">
+                      <CopyToClipboard
+                        text={prompt?.content}
+                        onCopy={() => setcopyState(true)}>
+                        {/* single child to which event is applied*/}
+
+                        <ContentCopyOutlined
+                          sx={{ fontSize: "16px" }}
+                        />
+                      </CopyToClipboard>
+                    </span>
+                  </div>
+                </li>
+              ) : (
+                ""
+              )
+            )}
+          </ul>
+          <div className="clear_btn">
+            <Button color="error" variant="contained" size="large" onClick={e => {setPrompts([]);}}>
+            Clear dialogues
+            </Button>
+          </div>
+        </div>
+
+        {/* <div className="chat__group new" style={{ marginTop: "20px" }}>
+          <h2 className="group__title" >Default state</h2>
+            <ul>
+                <li className="group__item">
+              <div className="fn__chat_link ">
+                <span className="text">
+                  Basic chat
+                </span>
+              </div>
+            </li>
+            </ul>
+
+        </div>*/}
       </div>
     </div>
   ];

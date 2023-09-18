@@ -16,6 +16,9 @@ import {
   LightModeOutlined,
   LogoutOutlined,
   NotificationsOutlined,
+  LibraryBooksOutlined,
+  InsightsOutlined,
+  TerminalOutlined,
   SupportOutlined,
   SyncAltOutlined,
   TranslateOutlined,
@@ -64,9 +67,7 @@ export default function DashboardLayout({
         ? require("@/utils/js/init.min")
         : null;
       setState(true);
-      console.log(
-        `Script mounted + you are on ${pathname}`
-      );
+      console.log(`Script mounted + you are on ${pathname}`);
     };
     e();
     return () => {
@@ -268,7 +269,7 @@ export default function DashboardLayout({
                       </Link>
                     </li>
                     <li>
-                      <Link
+                      <a
                         href="/profile"
                         className="fn__tooltip menu__item"
                         data-position="right"
@@ -280,7 +281,7 @@ export default function DashboardLayout({
                           <FaceOutlined className="fn__svg" />
                         </span>
                         <span className="text">User profile</span>
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -290,7 +291,7 @@ export default function DashboardLayout({
                     <h2 className="group__title">User tools</h2>
                   </div>
                   <ul className="group__list">
-                    <li>
+                    {/*    <li>
                       <a
                         href="/image"
                         className="fn__tooltip menu__item"
@@ -335,19 +336,35 @@ export default function DashboardLayout({
                         <span className="text">Audio generator</span>
                       </a>
                     </li>
+                  */}
+                   <li>
+                      <a
+                        href="/code"
+                        className="fn__tooltip menu__item"
+                        data-position="right"
+                        title="Get analysis insights">
+                        <span
+                          className={`icon ${
+                            pathname == p[10] && `icon_color`
+                          }`}>
+                          {<InsightsOutlined className="fn__svg" />}
+                        </span>
+                        <span className="text">Pattern analysis</span>
+                      </a>
+                    </li>
                     <li>
                       <a
                         href="/code"
                         className="fn__tooltip menu__item"
                         data-position="right"
-                        title="Generates code">
+                        title="Generate clean code">
                         <span
                           className={`icon ${
                             pathname == p[10] && `icon_color`
                           }`}>
-                          <CodeOutlined className="fn__svg" />
+                          {<TerminalOutlined className="fn__svg" />}
                         </span>
-                        <span className="text">Code generator</span>
+                        <span className="text">Generate Code</span>
                       </a>
                     </li>
                     <li>
@@ -355,14 +372,14 @@ export default function DashboardLayout({
                         href="/chat"
                         className="fn__tooltip menu__item"
                         data-position="right"
-                        title="Chat with bot">
+                        title="Get answers to questions">
                         <span
                           className={`icon ${
                             pathname == p[3] && `icon_color`
                           }`}>
-                          <ChatBubbleOutline className="fn__svg" />
+                          <LibraryBooksOutlined className="fn__svg" />
                         </span>
-                        <span className="text">Chat bot</span>
+                        <span className="text">Get Answers</span>
                       </a>
                     </li>
                   </ul>

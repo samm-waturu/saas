@@ -5,7 +5,7 @@ export default function ChatLayout() {
   return (
     <div className="style_fn_content">
       <div className="style_fn_page">
-       <div className="style_fn_aichatbot_page fn__chatbot">
+        <div className="style_fn_aichatbot_page fn__chatbot">
           <Chat />
         </div>
       </div>

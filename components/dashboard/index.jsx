@@ -29,8 +29,7 @@ const Index = () => {
     }
   }, [state]);
   */
-  return (
-    <>
+  return [
       <div className="section_home">
         <div className="section_left">
           <div className="style_fn_title_holder">
@@ -120,8 +119,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+  ]
 };
 
 export default Index;

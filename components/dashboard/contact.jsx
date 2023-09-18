@@ -1,7 +1,7 @@
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
 
 const Contact = () => {
-  return (
+  return [
     <div className={FontFetchHeebo.className}>
       <div className="style_fn_pagetitle">
         <h2 className="title">Contact Us</h2>
@@ -104,7 +104,8 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  );
+  ]
+
 };
 
 export default Contact;

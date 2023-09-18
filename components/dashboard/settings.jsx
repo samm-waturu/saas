@@ -2,7 +2,7 @@ import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 import { FontFetchHeebo, FontFetchSans } from "@/app/fonts/fonts";
 
 const Setting = () => {
-  return (
+  return [
     <div className={FontFetchHeebo.className}>
       <div className="style_fn_pagetitle">
         <h2 className="title">Settings</h2>
@@ -12,7 +12,7 @@ const Setting = () => {
           <form>
             <div className="user__settings">
               {/* Left settings field */}
-             
+
               {/* Right settings field */}
               <div className="settings_right">
                 <div className="item">
@@ -86,7 +86,7 @@ const Setting = () => {
         </div>
       </div>
     </div>
-  );
+  ];
 };
 
 export default Setting;
