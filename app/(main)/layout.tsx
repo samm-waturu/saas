@@ -339,7 +339,7 @@ export default function DashboardLayout({
                   */}
                    <li>
                       <a
-                        href="/code"
+                        href="/analysis"
                         className="fn__tooltip menu__item"
                         data-position="right"
                         title="Get analysis insights">
